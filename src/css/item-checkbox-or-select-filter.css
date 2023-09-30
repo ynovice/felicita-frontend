@@ -1,0 +1,28 @@
+.item-checkbox-or-select-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.item-checkbox-or-select-filter .title {
+    font-size: 18px;
+}
+
+.item-checkbox-or-select-filter .values {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+    gap: 8px;
+}
+
+.item-checkbox-or-select-filter .values .value {
+    display: flex;
+    gap: 5px;
+}
+
+.item-checkbox-or-select-filter .values .sub-values {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 8px;
+}

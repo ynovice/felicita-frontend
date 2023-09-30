@@ -1,0 +1,6 @@
+.PageWithHeaderAndFooter {
+    min-height: calc(100vh);
+    position: relative;
+    padding-bottom: calc(65px + 48px);  /* margin + footer height */
+    box-sizing: border-box;
+}

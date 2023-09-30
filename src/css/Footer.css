@@ -1,0 +1,29 @@
+.Footer {
+    width: 100%;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin-top: 65px;
+    box-sizing: border-box;
+    background: #000;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.Footer .social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.Footer .social-links .social-link {
+    height: 24px;
+}
+
+.Footer .social-links .social-link img {
+    width: 24px;
+    height: 24px;
+}

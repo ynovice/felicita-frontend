@@ -1,0 +1,163 @@
+.ConfirmReservePage {
+    padding: 20px 30px 0;
+
+}
+
+.ConfirmReservePage .page-title {
+    font-size: 24px;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.ConfirmReservePage .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 45px;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
+}
+
+.ConfirmReservePage .cart-item {
+    display: flex;
+    gap: 20px;
+    min-width: 780px;
+    max-width: 780px;
+}
+
+.ConfirmReservePage .cart-item .image-container {
+    width: 60px;
+    max-height: 100%;
+}
+.ConfirmReservePage .cart-item .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.ConfirmReservePage .cart-item .cart-item-info {
+    flex-grow: 1;
+}
+
+
+.ConfirmReservePage .cart-item .cart-item-name {
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+.ConfirmReservePage .cart-item .cart-item-size {
+    font-size: 18px;
+    color: #727270;
+}
+
+.ConfirmReservePage .cart-item .cart-item-total-price {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.ConfirmReservePage .cart-item .cart-item-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.ConfirmReservePage .cart-item .cart-item-controls .right {
+    display: flex;
+    gap: 5px;
+}
+
+.ConfirmReservePage .cart-quantity-counter {
+    align-items: baseline;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.ConfirmReservePage .counter-controls span {
+    background: #f9f9f9;
+    padding: 3px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 200ms;
+}
+
+.ConfirmReservePage .counter-controls span:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.ConfirmReservePage .counter-controls span:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.ConfirmReservePage .counter-controls span:not(.disabled):hover {
+    background: #f1ce76;
+}
+
+.ConfirmReservePage .cart-summary {
+    background: #F9F9F9;
+    padding: 25px 30px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    width: 840px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+}
+
+.ConfirmReservePage .cart-summary .items-total-count {
+    font-size: 18px;
+}
+
+.ConfirmReservePage .cart-summary .items-total-price {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ConfirmReservePage .cart-summary .items-total-price p {
+    font-size: 20px;
+}
+.ConfirmReservePage .cart-summary .button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media screen and (max-width: 1279px) {
+
+    .ConfirmReservePage .page-title {
+        text-align: left;
+    }
+
+    .ConfirmReservePage .cart-item {
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .ConfirmReservePage .cart-summary {
+        width: 100%;
+        box-sizing: content-box;
+        margin-left: -30px;
+    }
+}
+
+@media screen and (max-width: 599px) {
+
+    .ConfirmReservePage {
+        padding: 15px 10px 0;
+        box-sizing: border-box;
+    }
+
+    .ConfirmReservePage .page-title {
+        font-size: 18px;
+    }
+
+    .ConfirmReservePage .cart-summary {
+        width: 100%;
+        padding: 25px 10px;
+        margin-left: -10px;
+    }
+}

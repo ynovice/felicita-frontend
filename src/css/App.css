@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap');
+
+* {
+    font-family: "Bellota Text", sans-serif;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.cage {
+    max-width: 2300px;
+    margin: 0 auto;
+}
+
+.link {
+    font-size: 16px;
+    color: #CF9400;
+    text-decoration: none;
+    cursor: pointer;
+}
+.link:hover {
+    text-shadow: 0 0 5px #ffdf80;
+}
+.link.success {
+    color: #0d9150;
+}
+.link.success:hover {
+    text-shadow: 0 0 5px #36be7c;
+}
+.link.danger {
+    color: #DE4D4D;
+}
+.link.danger:hover {
+    text-shadow: 0 0 5px #ff9a9a;
+}
+
+.flct-input {
+    background: #eaeaea;
+    border-radius: 3px;
+    outline: none;
+    border: 0;
+    padding: 4px 12px;
+    font-size: 16px;
+    box-sizing: border-box;
+    width: 220px;
+}
+
+.flct-input::-webkit-outer-spin-button,
+.flct-input::-webkit-inner-spin-button,
+select::-webkit-outer-spin-button,
+select::-webkit-inner-spin-button,
+option::-webkit-outer-spin-button,
+option::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden *!*/
+}
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

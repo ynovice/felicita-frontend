@@ -1,0 +1,240 @@
+.CartPage {
+    display: flex;
+    gap: 80px;
+    padding: 20px 30px 0;
+}
+
+.CartPage .left-side {
+    width: 780px;
+}
+
+.CartPage .page-title {
+    font-size: 24px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.CartPage .no-items-message-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.CartPage .no-items-message-container * {
+    font-size: 18px;
+}
+
+.CartPage .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 30px;
+}
+
+.CartPage .cart-item {
+    display: flex;
+    gap: 20px;
+    min-width: 780px;
+}
+
+.CartPage .cart-item .image-container {
+    width: 60px;
+    max-height: 100%;
+}
+.CartPage .cart-item .image-container img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.CartPage .cart-item .cart-item-info {
+    flex-grow: 1;
+}
+
+
+.CartPage .cart-item .cart-item-name {
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+
+.CartPage .cart-item .cart-item-size {
+    font-size: 18px;
+    color: #727270;
+}
+
+.CartPage .cart-item .cart-item-total-price {
+    font-size: 18px;
+    font-weight: 700;
+    text-align: right;
+    padding-bottom: 10px;
+}
+
+.CartPage .cart-item .cart-item-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.CartPage .cart-item .cart-item-controls .right {
+    display: flex;
+    gap: 5px;
+}
+
+.CartPage .cart-quantity-counter {
+    align-items: baseline;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.CartPage .counter-controls span {
+    background: #f9f9f9;
+    padding: 3px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 200ms;
+}
+
+.CartPage .counter-controls span:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.CartPage .counter-controls span:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.CartPage .counter-controls span:not(.disabled):hover {
+    background: #f1ce76;
+}
+
+.CartPage .cart-summary {
+    background: #F9F9F9;
+    padding: 25px 30px;
+    margin-left: -30px;
+    min-width: 780px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.CartPage .cart-summary .items-total-count {
+    font-size: 18px;
+}
+
+.CartPage .cart-summary .items-total-price {
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+.CartPage .cart-summary .items-total-price p {
+    font-size: 20px;
+}
+.CartPage .cart-summary .button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.CartPage .similar-items-catalog {
+    display: flex;
+    gap: 20px;
+    flex-shrink: 1;
+    row-gap: 15px;
+    flex-wrap: wrap;
+    max-width: 1340px;
+}
+
+.CartPage .item .image-container {
+    width: 130px;
+    height: 200px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.CartPage .item .image-container img {
+    width: 130px;
+}
+
+.CartPage .item .item-name {
+    color: #727270;
+    font-size: 14px;
+    height: 16px;
+    width: 130px;
+    overflow: hidden;
+    text-wrap: none;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.CartPage .item a {
+    width: 130px;
+    display: flex;
+    gap: 1px;
+    flex-direction: column;
+    height: fit-content;
+    color: inherit;
+    text-decoration: none;
+}
+
+.CartPage .similar-items .section-title {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1279px) {
+
+    .CartPage {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .CartPage .left-side {
+        width: 100%;
+    }
+    .CartPage .cart-item {
+        min-width: auto;
+    }
+    .CartPage .cart-summary {
+        width: 100%;
+        margin-left: -30px;
+        min-width: auto;
+    }
+    .CartPage .similar-items-catalog {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+    }
+    .CartPage .similar-items-catalog::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 599px) {
+
+    .CartPage {
+        padding: 15px 10px 0;
+        gap: 15px;
+    }
+    .CartPage .left-side {
+        width: 100%;
+    }
+    .CartPage .cart-item {
+        min-width: auto;
+    }
+    .CartPage .cart-summary {
+        width: 100%;
+        padding: 25px 10px;
+        margin-left: -10px;
+    }
+    .CartPage .similar-items-catalog {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+    }
+    .CartPage .similar-items-catalog::-webkit-scrollbar {
+        display: none;
+    }
+}

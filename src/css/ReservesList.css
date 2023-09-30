@@ -1,0 +1,56 @@
+.ReservesList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ReservesList .reserve a {
+    background: #F9F9F9;
+    width: 100%;
+    max-width: 760px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin: 0 auto;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ReservesList .reserve a div {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    align-items: center;
+}
+
+.ReservesList .reserve img {
+    width: 16px;
+    height: 16px;
+}
+
+.ReservesList .reserve a .reserve-status {
+    color: #46A06A;
+}
+.ReservesList .reserve a .reserve-total-price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 599px) {
+
+    .ReservesList .reserve img {
+        display: none;
+    }
+
+    .ReservesList .reserve a {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ReservesList .reserve a div {
+        font-weight: 700;
+        overflow: hidden;
+    }
+}

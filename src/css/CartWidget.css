@@ -1,0 +1,92 @@
+.CartWidget {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 65px;
+}
+
+.CartWidget .title {
+    font-weight: 700;
+}
+
+.CartWidget .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.CartWidget .inverter {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.CartWidget .cart-quantity-counter {
+    align-items: baseline;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.CartWidget .cart-quantity-counter .total-price {
+    font-weight: 700;
+}
+
+.CartWidget .cart-quantity-counter span {
+    background: #f9f9f9;
+    padding: 3px 10px;
+    cursor: pointer;
+    text-align: center;
+    transition-duration: 200ms;
+}
+
+.CartWidget .cart-quantity-counter span:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.CartWidget .cart-quantity-counter span:last-child {
+    border-radius: 0 5px 5px 0;
+}
+
+.CartWidget .cart-quantity-counter span:not(.disabled):hover {
+    background: #f1ce76;
+}
+
+@media screen and (min-width: 600px) and (max-width: 1199px) {
+
+    .CartWidget {
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .CartWidget .controls {
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .CartWidget .inverter {
+        flex-direction: row-reverse;
+    }
+}
+
+@media screen and (max-width: 599px) {
+
+    .CartWidget {
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .CartWidget .controls {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .CartWidget .inverter {
+        flex-direction: row-reverse;
+    }
+
+    .CartWidget .cart-quantity-counter {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}

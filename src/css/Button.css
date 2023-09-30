@@ -1,0 +1,23 @@
+.button {
+    padding: 8px 20px;
+    color: #000;
+    background: #FFC700;
+    display: block;
+    text-decoration: none;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    border-radius: 2px;
+    width: fit-content;
+    cursor: pointer;
+    border: none;
+    font-weight: 700;
+}
+.button:hover {
+    background: #e7ac1a;
+}
+.button.danger {
+    color: #fff;
+    background: #DE4D4D;
+}
+.button.danger:hover {
+    box-shadow: 0 0 6px #DE4D4D;
+}

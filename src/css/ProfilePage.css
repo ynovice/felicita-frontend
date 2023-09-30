@@ -1,0 +1,119 @@
+.ProfilePage {
+    width: 760px;
+    max-width: 100vw;
+    margin: 20px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-size: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    box-sizing: border-box;
+}
+
+.ProfilePage .section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.ProfilePage .section p .username {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ProfilePage .section .links {
+    display: flex;
+    gap: 20px;
+}
+
+.ProfilePage .left {
+    display: flex;
+    width: 100%;
+}
+
+.ProfilePage .credentials {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ProfilePage .credential {
+    background: #F9F9F9;
+    width: 100%;
+}
+
+.ProfilePage .credential .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.ProfilePage .credential-name {
+    width: 25%;
+    min-width: fit-content;
+    display: flex;
+    gap: 10px;
+}
+.ProfilePage .credential-name img {
+    width: 16px;
+    height: 16px;
+}
+
+.ProfilePage .credential-presentation {
+    color: #0C4BC6;
+}
+
+.ProfilePage .right img {
+    width: 16px;
+    height: 16px;
+    transition-duration: 200ms;
+}
+.ProfilePage .right img.rotated {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.ProfilePage .credential-details-container {
+    display: none;
+}
+
+.ProfilePage .credential-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+}
+.ProfilePage .you-cant {
+    color: #727270;
+}
+
+@media screen and (max-width: 599px) {
+
+    .ProfilePage {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 15px;
+        /*width: 100vw;*/
+        margin: 0;
+        /*box-sizing: border-box;*/
+
+    }
+
+    .ProfilePage .credentials {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .ProfilePage .credential {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .ProfilePage .credential .row .left {
+        gap: 5%;
+    }
+}

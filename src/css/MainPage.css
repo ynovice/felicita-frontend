@@ -1,0 +1,73 @@
+.MainPage{
+    padding: 20px 30px 0;
+}
+
+.MainPage .banner-container {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+}
+.MainPage .banner-container img {
+    width: 100%;
+}
+
+.MainPage .feedback-proposal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.MainPage .feedback-proposal .proposal-title {
+    font-size: 24px;
+    font-weight: normal;
+}
+
+.MainPage .section {
+    padding-bottom: 20px;
+}
+.MainPage .section-name {
+    width: 100%;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #FCFCFC;
+    font-weight: normal;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.MainPage .section .section-link {
+    font-size: 18px;
+}
+
+.MainPage .feedback-inputs {
+    display: flex;
+    gap: 20px;
+    padding: 5px 0 10px;
+}
+
+.MainPage .feedback-success {
+
+}
+
+@media screen and (max-width: 599px) {
+
+    .MainPage{
+        padding: 15px 10px 0;
+    }
+
+    .MainPage .feedback-proposal {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .MainPage .feedback-inputs {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 70%;
+    }
+
+    .MainPage .feedback-inputs .flct-input {
+        width: 100%;
+    }
+}

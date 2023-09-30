@@ -1,0 +1,28 @@
+.CallbackRequestsPage {
+    padding: 20px 30px 0;
+}
+
+.CallbackRequestsPage .page-title {
+    font-size: 24px;
+}
+
+.CallbackRequestsPage .cr-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+.CallbackRequestsPage .cr-list-item {
+    display: flex;
+    gap: 25px;
+}
+
+.CallbackRequestsPage .cr-list-item p {
+    width: 160px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 18px;
+    font-weight: bold;
+}
