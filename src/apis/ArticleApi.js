@@ -17,7 +17,7 @@ class ArticleApi extends BaseApi {
             },
             body: JSON.stringify(createArticleRequestDto)
         };
-        return await this.performRequestGetResponseBody(BaseApi.API_BASE_URL + "/article", requestParams)
+        return await this.performRequestGetResponseBody(BaseApi.API_BASE_URL + "/article", requestParams);
     }
 
     async update(updateArticleRequestDto) {
@@ -28,7 +28,14 @@ class ArticleApi extends BaseApi {
             },
             body: JSON.stringify(updateArticleRequestDto)
         };
-        return await this.performRequestGetResponseBody(BaseApi.API_BASE_URL + "/article", requestParams)
+        return await this.performRequestGetResponseBody(BaseApi.API_BASE_URL + "/article", requestParams);
+    }
+
+    async getAll(abortSignal) {
+        const requestParams = {
+            abortSignal: abortSignal
+        }
+        return await this.performRequestGetResponseBody(BaseApi.API_BASE_URL + "/article", requestParams);
     }
 }
 

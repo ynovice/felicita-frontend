@@ -1,7 +1,7 @@
 .button {
     padding: 8px 20px;
-    color: var(--primary-black);
-    background: var(--primary-milky);
+    color: var(--background);
+    background: var(--foreground);
     display: block;
     text-decoration: none;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
@@ -14,7 +14,7 @@
     transition: 200ms all;
 }
 .button:hover {
-    background: var(--primary-milky-darken);
+    background: var(--foreground-darken);
 }
 .button.danger {
     color: #fff;

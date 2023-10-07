@@ -46,7 +46,7 @@ function Header() {
         <header className="Header">
 
             <div className="header-upper-part">
-                <div className="header-title">FELICITA</div>
+                <div className="header-title"><a href="/">FELICITA</a></div>
 
                 <div className="menu-toggler noselect"
                      onClick={() => toggleMobileMenu()}>

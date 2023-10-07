@@ -3,6 +3,7 @@ import {useCallback, useEffect, useState} from "react";
 import requiresUser from "../hoc/requiresUser";
 import "../css/CartPage.css";
 import Api from "../Api";
+import itemApi from "../apis/ItemApi";
 
 function CartPage() {
 
@@ -66,7 +67,7 @@ function CartPage() {
 
         const abortController = new AbortController();
 
-        Api.getItemsPageByFilterParams({}, abortController.signal)
+        itemApi.findByParams({}, abortController.signal)
             .then(retrievedSimilarItemsPage => setCachedSimilarItemsPage(retrievedSimilarItemsPage));
 
         return () => abortController.abort();

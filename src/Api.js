@@ -240,20 +240,6 @@ const Api = (function () {
             await throwCorrespondingException(response);
         },
 
-        getItemsPageByFilterParams: async function (searchParams, abortSignal) {
-
-            const response = await fetch(API_BASE_URL + "/item?" + new URLSearchParams(searchParams), {
-                signal: abortSignal,
-                credentials: "include",
-            }).catch(() => null);
-
-            if(response && response.ok) {
-                return await response.json();
-            }
-
-            await throwCorrespondingException(response);
-        },
-
         getArticleById: async function (id, abortSignal) {
 
             const response = await fetch(API_BASE_URL + "/article/" + id, {
@@ -302,20 +288,6 @@ const Api = (function () {
         getReservesForCurrentUser: async function (abortSignal) {
 
             const response = await fetch(API_BASE_URL + "/reserve", {
-                signal: abortSignal,
-                credentials: "include"
-            }).catch(() => null)
-
-            if(response && response.ok) {
-                return await response.json();
-            }
-
-            await throwCorrespondingException(response);
-        },
-
-        getAllArticles: async function (abortSignal) {
-
-            const response = await fetch(API_BASE_URL + "/article", {
                 signal: abortSignal,
                 credentials: "include"
             }).catch(() => null)

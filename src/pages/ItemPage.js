@@ -8,8 +8,9 @@ import ErrorPage from "./ErrorPage";
 import CartWidget from "../components/CartWidget";
 import {AppContext, ServerState} from "../contexts/AppContext";
 import RequestAbortedException from "../exception/RequestAbortedException";
-import {ApiContext} from "../contexts/ApiContext";
 import Pagination from "../components/Pagintation";
+import itemApi from "../apis/ItemApi";
+
 
 function ItemPage() {
 
@@ -26,7 +27,6 @@ function ItemPage() {
     const [item, setItem] = useState(null);
     const [itemState, setItemState] = useState(ItemState.LOADING);
 
-    const { itemApi } = useContext(ApiContext);
     useEffect(() => {
 
         const abortController = new AbortController();
@@ -61,16 +61,14 @@ function ItemPage() {
 
         const abortController = new AbortController();
 
-        Api.getItemsPageByFilterParams({}, abortController.signal)
+        itemApi.findByParams({}, abortController.signal)
             .then(itemsPage => {
-
                 for (let i = 0; i < itemsPage["items"].length; i++) {
                     if(itemsPage["items"][i]["id"] === Number(itemId)) {
                         itemsPage["items"].splice(i, 1);
                         break;
                     }
                 }
-
                 setSimilarItemsPage(itemsPage);
             });
 

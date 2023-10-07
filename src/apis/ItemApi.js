@@ -37,6 +37,15 @@ class ItemApi extends BaseApi {
         };
         await this.performRequest(BaseApi.API_BASE_URL + `/item/${id}`, requestParams);
     }
+
+    async findByParams(searchParams, abortSignal) {
+        const requestParams = {
+            method: "get",
+            abortSignal: abortSignal
+        };
+        let requestUrl = BaseApi.API_BASE_URL + "/item?" + new URLSearchParams(searchParams);
+        return await this.performRequestGetResponseBody(requestUrl, requestParams);
+    }
 }
 
 const itemApi = new ItemApi();

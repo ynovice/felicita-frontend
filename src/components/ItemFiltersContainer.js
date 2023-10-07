@@ -5,21 +5,20 @@ import "../css/ItemsFilter.css";
 import ItemCategoryFilter from "./ItemCategoryFilter";
 import ItemCheckboxFilter from "./ItemCheckboxFilter";
 import ItemRadioFilter from "./ItemRadioFilter";
+import itemApi from "../apis/ItemApi";
+import categoryApi from "../apis/CategoryApi";
 
 function ItemFiltersContainer({opened, setOpened, setItemsPage, setCatalogState, onSuccessCatalogState}) {
 
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
-
         const abortController = new AbortController();
-
-        Api.getItemsPageByFilterParams(searchParams, abortController.signal)
+        itemApi.findByParams(searchParams, abortController.signal)
             .then(itemsPage => {
                 setItemsPage(itemsPage);
                 setCatalogState(onSuccessCatalogState);
             });
-
         return () => abortController.abort();
     }, [onSuccessCatalogState, searchParams, setCatalogState, setItemsPage]);
 
@@ -36,28 +35,30 @@ function ItemFiltersContainer({opened, setOpened, setItemsPage, setCatalogState,
     const [existingCategoriesTrees, setExistingCategoriesTrees] = useState([]);
     const [chosenCategoriesIds, setChosenCategoriesIds] = useState([]);
     useEffect(() => {
-        Api.getAllCategories()
+        const abortController = new AbortController();
+        categoryApi.getAll(abortController.signal)
             .then(retrievedCategoriesTrees => setExistingCategoriesTrees(retrievedCategoriesTrees));
-        }, []);
+        return () => abortController.abort();
+    }, []);
 
     const [existingSizes, setExistingSizes] = useState([]);
     const [chosenSizesIds, setChosenSizesIds] = useState([]);
     useEffect(() => {
         Api.getAllSizes().then(retrievedSizes => setExistingSizes(retrievedSizes));
-        }, []);
+    }, []);
 
 
     const [existingColors, setExistingColors] = useState([]);
     const [chosenColorsIds, setChosenColorsIds] = useState([]);
     useEffect(() => {
         Api.getAllColors().then(retrievedColors => setExistingColors(retrievedColors));
-        }, []);
+    }, []);
 
     const [existingMaterials, setExistingMaterials] = useState([]);
     const [chosenMaterialsIds, setChosenMaterialsIds] = useState([]);
     useEffect(() => {
         Api.getAllMaterials().then(retrievedMaterials => setExistingMaterials(retrievedMaterials));
-        }, []);
+    }, []);
 
 
     const [hasPrint, setHasPrint] = useState(null);
@@ -75,16 +76,16 @@ function ItemFiltersContainer({opened, setOpened, setItemsPage, setCatalogState,
 
         const searchParamsDto = {};
 
-        if(searchParams.get("page") !== null) searchParamsDto.page = searchParams.get("page");
+        if (searchParams.get("page") !== null) searchParamsDto.page = searchParams.get("page");
 
-        if(priceFrom !== "") searchParamsDto.priceFrom = priceFrom;
-        if(priceTo !== "") searchParamsDto.priceTo = priceTo;
-        if(hasPrint !== null) searchParamsDto.hasPrint = hasPrint;
+        if (priceFrom !== "") searchParamsDto.priceFrom = priceFrom;
+        if (priceTo !== "") searchParamsDto.priceTo = priceTo;
+        if (hasPrint !== null) searchParamsDto.hasPrint = hasPrint;
 
-        if(chosenCategoriesIds.length > 0) searchParamsDto.categoriesIds = chosenCategoriesIds;
-        if(chosenSizesIds.length > 0) searchParamsDto.sizesIds = arrToStr(chosenSizesIds);
-        if(chosenColorsIds.length > 0) searchParamsDto.colorsIds = arrToStr(chosenColorsIds);
-        if(chosenMaterialsIds.length > 0) searchParamsDto.materialsIds = arrToStr(chosenMaterialsIds);
+        if (chosenCategoriesIds.length > 0) searchParamsDto.categoriesIds = chosenCategoriesIds;
+        if (chosenSizesIds.length > 0) searchParamsDto.sizesIds = arrToStr(chosenSizesIds);
+        if (chosenColorsIds.length > 0) searchParamsDto.colorsIds = arrToStr(chosenColorsIds);
+        if (chosenMaterialsIds.length > 0) searchParamsDto.materialsIds = arrToStr(chosenMaterialsIds);
 
         return searchParamsDto;
     }
@@ -97,7 +98,7 @@ function ItemFiltersContainer({opened, setOpened, setItemsPage, setCatalogState,
             result += String(arr[i]) + ",";
         }
 
-        if(result.length > 0) result = result.substring(0, result.length - 1);
+        if (result.length > 0) result = result.substring(0, result.length - 1);
 
         return result;
     }

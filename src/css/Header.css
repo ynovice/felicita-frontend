@@ -2,7 +2,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: var(--primary-black, #191D20);
+    background: var(--background);
 }
 
 .Header .header-upper-part {
@@ -15,12 +15,16 @@
 }
 
 .Header .header-title {
-    color: var(--primary-milky, #E7D5C7);
+}
+
+.Header .header-title a {
+    color: var(--foreground);
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     letter-spacing: 2px;
+    text-decoration: none;
 }
 
 .Header .menu-toggler {
@@ -35,7 +39,7 @@
 }
 
 .Header .menu-item a {
-    color: var(--primary-milky, #E7D5C7);
+    color: var(--foreground);
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
@@ -65,7 +69,7 @@
 .Header .header-lower-part-link,
 .Header .header-lower-part-primary-link {
     text-decoration: none;
-    color: var(--primary-milky, #E7D5C7);
+    color: var(--foreground);
     font-size: 16px;
     font-style: normal;
     font-weight: 700;

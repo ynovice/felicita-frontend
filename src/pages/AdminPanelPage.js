@@ -7,27 +7,18 @@ function AdminPanelPage() {
 
     return (
         <div className="AdminPanelPage">
-
             <div className="section">
                 <h1 className="page-title">Панель администратора</h1>
             </div>
-
             <div className="section">
                 <a href="/admin/item/save" className="link">Создать новый товар</a>
             </div>
-
             <div className="section">
                 <a href="/admin/article/save" className="link">Создать статью для блога</a>
             </div>
-
             <div className="section">
                 <a href="/admin/reserve" className="link">Менеджер зарезервированных товаров</a>
             </div>
-
-            <div className="section">
-                <a href="/admin/cr" className="link">Заявки на обратную связь</a>
-            </div>
-
         </div>
     );
 }
