@@ -9,7 +9,7 @@ import ErrorPage from "./ErrorPage";
 import "../css/ReservePage.css";
 import FailedRequestException from "../exception/FailedRequestException";
 import {AccessLevel, AppContext} from "../contexts/AppContext";
-import reserveApi from "../api/ReserveApi";
+import reserveApi from "../apis/ReserveApi";
 
 function ReservePage() {
 

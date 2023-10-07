@@ -6,7 +6,7 @@ import React, {useContext} from "react";
 import {SOCIAL_LOGIN_LOGOS_URLS} from "../constants";
 import requiresUser from "../hoc/requiresUser";
 import Button from "../components/Button";
-import userApi from "../api/UserApi";
+import userApi from "../apis/UserApi";
 
 function ProfilePage() {
 

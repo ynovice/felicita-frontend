@@ -21,14 +21,14 @@ import ConfirmReservePage from "./pages/ConfirmReservePage";
 import ReservePage from "./pages/ReservePage";
 import ReservesListPage from "./pages/CurrentUserReservesPage";
 import BlogPage from "./pages/BlogPage";
-import userApi from "./api/UserApi";
-import BaseApi from "./api/BaseApi";
+import userApi from "./apis/UserApi";
+import BaseApi from "./apis/BaseApi";
 import {ApiContextProvider} from "./contexts/ApiContext";
-import imageApi from "./api/ImageApi";
-import itemApi from "./api/ItemApi";
+import imageApi from "./apis/ImageApi";
+import itemApi from "./apis/ItemApi";
 import AdminReservesManagerPage from "./pages/AdminReservesManagerPage";
-import reserveApi from "./api/ReserveApi";
-import callbackRequestApi from "./api/CallbackRequestApi";
+import reserveApi from "./apis/ReserveApi";
+import callbackRequestApi from "./apis/CallbackRequestApi";
 import CallbackRequestsPage from "./pages/CallbackRequestsPage";
 
 function App() {

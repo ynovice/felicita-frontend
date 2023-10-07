@@ -1,11 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&display=swap');
 
+:root {
+    --primary-black: #191D20;
+    --primary-milky: #E7D5C7;
+    --primary-milky-darken: #c0a68c;
+    --danger: #DE4D4D;
+}
+
 * {
     font-family: "Bellota Text", sans-serif;
     font-weight: 700;
     margin: 0;
     padding: 0;
 }
+
+body {
+    background: var(--primary-black, #191D20);
+}
+
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */

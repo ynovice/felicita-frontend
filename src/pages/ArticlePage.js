@@ -1,16 +1,14 @@
 import withHeaderAndFooter from "../hoc/withHeaderAndFooter";
 import "../css/ArticlePage.css";
-import {useContext, useEffect, useMemo, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import ErrorPage from "./ErrorPage";
 import {useParams} from "react-router-dom";
 import Api from "../Api";
 import NotFoundException from "../exception/NotFoundException";
-import {AccessLevel, AppContext} from "../contexts/AppContext";
 import FailedRequestException from "../exception/FailedRequestException";
+import imageApi from "../apis/ImageApi";
 
 function ArticlePage () {
-
-    const { accessLevel } = useContext(AppContext);
 
     const ArticleState = {
         LOADING: "LOADING",
@@ -67,27 +65,24 @@ function ArticlePage () {
         return <ErrorPage errorMessage="Произошла какая-то ошибка при попытке открыть статью."/>
     }
 
+    const articlePreviewUrl = imageApi.getImageUrlByImageId(article["id"]);
+
     return (
         <div className="ArticlePage">
-            <div className="article">
-                <div className="name">{article["name"]}</div>
-                <div className="content" dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article["content"])}}></div>
-                <div className="article-meta">
-                    <div className="author">Автор: {article["author"]}</div>
-                    <div className="author">Создана {article["createdAtPresentation"]}</div>
+            <div className="article-content-heading">
+                <div className="article-preview-container">
+                    <img src={articlePreviewUrl} className="article-preview" alt="Article preview"/>
                 </div>
-                {accessLevel === AccessLevel.ADMIN &&
-                    <div className="admin-controls">
-                        <a href={"/admin/article/save?id=" + article["id"]} className="link">Редактировать →</a>
-                        <span onClick={() => handleDeleteArticleClick()} className="link danger">Удалить</span>
-                    </div>
-                }
+                <div className="article-heading-text">
+                    <div className="article-title">{article["name"]}</div>
+                    <div className="article-author">Author: {article["author"]}</div>
+                    <div className="article-date">Written on {article["createdAtPresentation"]}</div>
+
+                </div>
             </div>
 
-            <div className="similar-articles">
-                <div className="section-title">Другие статьи:</div>
-                <p>Секция в разработке...</p>
-            </div>
+            <div className="article-content"
+                 dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(article["content"])}}></div>
         </div>
     );
 }

@@ -10,7 +10,7 @@ import SizesQuantitiesSelector from "../components/SizesQuantitiesSelector";
 import ItemCategoriesSelector from "../components/ItemCategoriesSelector";
 import {useSearchParams} from "react-router-dom";
 import {ApiContext} from "../contexts/ApiContext";
-import imageApi from "../api/ImageApi";
+import imageApi from "../apis/ImageApi";
 
 function SaveItemPage() {
 

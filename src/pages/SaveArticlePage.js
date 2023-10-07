@@ -3,13 +3,15 @@ import requiresUser from "../hoc/requiresUser";
 import "../css/SaveArticlePage.css";
 import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import EditorJS from '@editorjs/editorjs';
-import Api from "../Api";
 import edjsHtml from "editorjs-html";
 import InvalidEntityException from "../exception/InvalidEntityException";
 import {useSearchParams} from "react-router-dom";
 import adminAccessOnly from "../hoc/adminAccessOnly";
 import Button from "../components/Button";
-import {ApiContext} from "../contexts/ApiContext";
+import {UpdatedUserContext} from "../contexts/UserContext";
+import {formattedDate} from "../constants";
+import articleApi from "../apis/ArticleApi";
+import imageApi from "../apis/ImageApi";
 
 function SaveArticlePage() {
 
@@ -18,11 +20,15 @@ function SaveArticlePage() {
     const [name, setName] = useState("");
     const [nameAreaRef] = useState(React.createRef());
 
+    const [articleAuthor, setArticleAuthor] = useState("");
+    const [articleDatePresentation, setArticleDatePresentation] = useState("");
+
     useEffect(() => {
         nameAreaRef.current.style.height = "5px";
         nameAreaRef.current.style.height = (nameAreaRef.current.scrollHeight) + "px";
-
     }, [nameAreaRef, name])
+
+    const {user} = useContext(UpdatedUserContext);
 
     const DOMPurify = useMemo(() => require("dompurify")(window), []);
     const [editor, setEditor] = useState(null);
@@ -38,11 +44,11 @@ function SaveArticlePage() {
                 config: {
                     uploader: {
                         uploadByFile(file) {
-                            return Api.uploadImage(file).then((imageDto) => {
+                            return imageApi.uploadImage(file).then((imageDto) => {
                                 return {
                                     success: 1,
                                     file: {
-                                        url: Api.getImageUrlByImageId(imageDto["id"])
+                                        url: imageApi.getImageUrlByImageId(imageDto["id"])
                                     }
                                 }
                             });
@@ -69,11 +75,13 @@ function SaveArticlePage() {
 
                 const editedArticleId = searchParams.get("id");
                 if(editedArticleId) {
-                    Api.getArticleById(Number(editedArticleId))
+                    articleApi.getById(Number(editedArticleId), abortController.signal)
                         .then(article => {
 
                             setName(article["name"]);
-                            setUploadedImage(article["preview"]);
+                            setArticleAuthor(article["author"])
+                            setArticleDatePresentation(article["createdAtPresentation"]);
+                            setUploadedImageId(article["preview"]["id"]);
 
                             (function loopedEditorUpdater() {
                                 setTimeout(function () {
@@ -90,6 +98,9 @@ function SaveArticlePage() {
                             console.log(e)
                             alert("Произошла ошибка при попытке загрузить редактируемую статью");
                         });
+                } else {
+                    setArticleAuthor(user["username"]);
+                    setArticleDatePresentation(formattedDate());
                 }
 
                 return currentEditor;
@@ -98,12 +109,13 @@ function SaveArticlePage() {
             return new EditorJS({
                 holder: "editor",
                 placeholder: "Нажмите, чтобы начать писать статью",
+                minHeight: 50,
                 tools
             });
         });
 
         return () => abortController.abort();
-    }, [searchParams]);
+    }, [searchParams, user]);
 
     const [fieldErrors, setFieldErrors] = useState([]);
     const handleSaveClick = () => {
@@ -118,10 +130,10 @@ function SaveArticlePage() {
                     id: Number(searchParams.get("id")),
                     name: name,
                     content: DOMPurify.sanitize(html.join("")),
-                    previewId: uploadedImage["id"]
+                    previewId: uploadedImageId
                 };
 
-                Api.updateArticle(requestDto)
+                articleApi.update(requestDto)
                     .then(articleDto => {
                         window.location.href = "/article/" + articleDto["id"];
                     })
@@ -134,10 +146,10 @@ function SaveArticlePage() {
                 const requestDto = {
                     name: name,
                     content: DOMPurify.sanitize(html.join("")),
-                    previewId: uploadedImage["id"]
+                    previewId: uploadedImageId
                 };
 
-                Api.createArticle(requestDto)
+                articleApi.create(requestDto)
                     .then(articleDto => {
                         window.location.href = "/article/" + articleDto["id"];
                     })
@@ -153,9 +165,8 @@ function SaveArticlePage() {
         });
     }
 
-    const [uploadedImage, setUploadedImage] = useState(null);
+    const [uploadedImageId, setUploadedImageId] = useState(null);
     const [previewFileInputRef] = useState(useRef());
-    const { imageApi } = useContext(ApiContext);
 
     const handleImageUpload = (e) => {
         e.preventDefault();
@@ -165,7 +176,9 @@ function SaveArticlePage() {
         if(!image) return;
 
         imageApi.uploadImage(image)
-            .then((newUploadedImage) => setUploadedImage(newUploadedImage))
+            .then((newUploadedImage) => {
+                setUploadedImageId(newUploadedImage["id"])
+            })
             .catch(() => alert("Что-то пошло не так при загрузке изображения."));
     }
 
@@ -173,55 +186,51 @@ function SaveArticlePage() {
         previewFileInputRef.current.click();
     }
 
-    const imageUrl = uploadedImage ?
-        imageApi.getImageUrlByImageId(uploadedImage["id"]) :
+    const imageUrl = uploadedImageId ?
+        imageApi.getImageUrlByImageId(uploadedImageId) :
         "/ui/placeholders/article-placeholder.png";
 
     return (
         <div className="SaveArticlePage">
-            <h1 className="page-title">Создание статьи</h1>
 
-            <div className="section">
-                <p className="section-title">Превью статьи</p>
+            <div className="article-content-heading">
+                <div className="article-preview-container">
+                    <input type="file"
+                           id="file-uploader"
+                           ref={previewFileInputRef}
+                           onChange={(e) => handleImageUpload(e)}/>
+                    <img src={imageUrl}
+                         onClick={() => handleChooseAnotherPreviewClick()}
+                         className="article-preview"
+                         alt="Choose preview"/>
+                    <p>Click to choose preview</p>
+                </div>
+                <div className="article-heading-text">
+                    <textarea ref={nameAreaRef}
+                              onChange={(e) => setName(e.target.value)}
+                              value={name}
+                              placeholder="Article title"
+                              className="article-title"
+                              cols="30"
+                              rows="10">
 
-                <input type="file"
-                       id="file-uploader"
-                       ref={previewFileInputRef}
-                       onChange={(e) => handleImageUpload(e)}/>
+                    </textarea>
 
-                <img src={imageUrl}
-                     alt="article preview"
-                     className="article-preview"/>
-
-                <Button value="Выбрать другое" onClick={() => handleChooseAnotherPreviewClick()}/>
-
-                {uploadedImage !== null &&
-                    <span id="reset-preview"
-                          className="link danger" onClick={() => setUploadedImage(null)}>
-                        Сбросить
-                    </span>
-                }
-
+                    <div className="article-date">Author: {articleAuthor}</div>
+                    <div className="article-date">Written on {articleDatePresentation}</div>
+                </div>
             </div>
 
-            <textarea ref={nameAreaRef}
-                      onChange={(e) => setName(e.target.value)}
-                      value={name}
-                      className="article-name-editor"
-                      placeholder="Название статьи"
-                      cols="30"
-                      rows="10">
-            </textarea>
+            <div id="editor" className="article-content"></div>
 
-            <div id="editor"></div>
-
-            <input type="button" className="button" value="Сохранить" onClick={() => handleSaveClick()}/>
+            <Button value="Save" onClick={() => handleSaveClick()}/>
 
             <div className="errors-container">
                 {fieldErrors.map(fieldError => {
                     return <p key={fieldError.errorCode}>{fieldError.errorMessage}</p>
                 })}
             </div>
+
         </div>
     );
 }

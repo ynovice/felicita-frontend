@@ -4,7 +4,7 @@ import requiresUser from "../hoc/requiresUser";
 import "../css/AdminReservesManagerPage.css";
 import {useEffect, useMemo, useState} from "react";
 import {useSearchParams} from "react-router-dom";
-import reserveApi from "../api/ReserveApi";
+import reserveApi from "../apis/ReserveApi";
 import RequestAbortedException from "../exception/RequestAbortedException";
 import ErrorPage from "./ErrorPage";
 import ReservesList from "../components/ReservesList";

@@ -1,112 +1,150 @@
 .SaveArticlePage {
-    padding: 30px 30px 0;
-    box-sizing: border-box;
+    max-width: 1040px;
+    width: 100%;
+    padding: 75px 0;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 100px;
+    gap: 30px;
+    background: var(--primary-black);
 }
 
-.SaveArticlePage .page-title {
-    font-size: 24px;
+.SaveArticlePage .article-content-heading {
+    display: flex;
+    gap: 30px;
 }
+
+.SaveArticlePage .article-preview-container {
+    width: 450px;
+    position: relative;
+    cursor: pointer;
+    transition: 200ms all;
+}
+.SaveArticlePage .article-preview-container p {
+    display: none;
+    pointer-events: none;
+}
+.SaveArticlePage .article-preview-container:hover p {
+    display: block;
+    color: var(--primary-milky);
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 20px;
+    transition: 200ms all;
+}
+
 
 .SaveArticlePage #file-uploader {
     display: none;
 }
 
-.SaveArticlePage .section {
-    padding-bottom: 40px;
-}
-
-.SaveArticlePage .section-title {
-    font-size: 20px;
-    padding-bottom: 20px;
-}
-
 .SaveArticlePage .article-preview {
-    width: 350px;
-    max-width: 100%;
-    padding-bottom: 20px;
+    width: 450px;
+    border-radius: 10px;
+    transition: 200ms all;
+}
+.SaveArticlePage .article-preview-container:hover .article-preview {
+    opacity: 0.4;
+    cursor: pointer;
 }
 
-.SaveArticlePage #reset-preview {
-    margin-top: 10px;
-    display: block;
-}
-
-.SaveArticlePage .form-row {
-    display: flex;
-    gap: 20px;
-    align-items: baseline;
-}
-
-.SaveArticlePage #editor * {
-    font-size: 18px;
-    line-height: 26px;
-}
-.SaveArticlePage #editor h1 {
-    font-size: 24px;
-}
-.SaveArticlePage #editor h2 {
-    font-size: 22px;
-}
-.SaveArticlePage #editor h3 {
-    font-size: 20px;
-}
-.SaveArticlePage #editor h4 {
-    font-size: 18px;
-}
-.SaveArticlePage #editor h5 {
-    font-size: 16px;
-}
-.SaveArticlePage #editor h6 {
-    font-size: 14px;
-}
-
-.SaveArticlePage #editor {
-    max-width: 860px;
-}
-.SaveArticlePage .codex-editor__redactor {
-    padding-bottom: 100px !important;
-}
-.SaveArticlePage .ce-block__content,
-.SaveArticlePage .ce-toolbar__content {
-    max-width: 860px;
-}
-.SaveArticlePage .ce-toolbar__actions {
-    left: 100%;
-    padding-left: 5px;
-}
-.SaveArticlePage .ce-paragraph[data-placeholder]:empty::before {
-    color: #727270;
-}
-
-.SaveArticlePage .article-name-editor,
-.SaveArticlePage .article-content-editor {
-    width: 860px;
-    max-width: 100%;
-    height: 122px;
-    font-size: 18px;
-    padding-bottom: 100px;
-    border: none;
-    outline: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
-    resize: none;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-.SaveArticlePage .article-name-editor {
-    font-size: 32px;
-    padding: 0;
-    height: 38px;
-}
-
-.SaveArticlePage .errors-container {
+.SaveArticlePage .article-heading-text {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    color: #DE4D4D;
+}
+
+.SaveArticlePage .article-title {
+    color: var(--primary-milky);
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 2px;
+    width: 100%;
+
+    background: none;
+    border-radius: 0;
+    border: none;
+    resize: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    outline: none;
+}
+
+.SaveArticlePage .article-author,
+.SaveArticlePage .article-date {
+    color: var(--primary-milky);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+.SaveArticlePage .article-content img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.SaveArticlePage ::selection {
+    background-color: #2b4050   ;
+}
+.SaveArticlePage .ce-block--selected .ce-block__content {
+    background: #2b4050;
+}
+.SaveArticlePage .ce-toolbar__content {
+    max-width: unset;
+}
+.SaveArticlePage .ce-toolbar__plus {
+    background-color: #fff;
+}
+.SaveArticlePage .ce-toolbar__settings-btn {
+    background-color: #fff;
+}
+.SaveArticlePage .ce-block__content {
+    width: 100% !important;
+    max-width: unset;
+}
+.SaveArticlePage .ce-paragraph.cdx-block {
+    color: var(--primary-milky);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 1px;
+}
+.SaveArticlePage .codex-editor__redactor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.SaveArticlePage .cdx-block {
+    padding: 0;
+}
+.SaveArticlePage .image-tool__image {
+    margin-bottom: 0;
+}
+.SaveArticlePage .cdx-input.image-tool__caption {
+    display: none;
+}
+.SaveArticlePage .cdx-block.image-tool.image-tool--filled {
+    padding: 0;
+}
+.SaveArticlePage .ce-header {
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 20px 0;
+}
+.SaveArticlePage .image-tool__image {
+    padding: 25px 0;
+}
+
+.SaveArticlePage .errors-container p {
+    color: var(--danger);
 }

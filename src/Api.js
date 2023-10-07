@@ -254,44 +254,6 @@ const Api = (function () {
             await throwCorrespondingException(response);
         },
 
-        createArticle: async function (requestDto) {
-
-            const response = await fetch(API_BASE_URL + "/article", {
-                credentials: "include",
-                method: "post",
-                headers: {
-                    [csrfHeaderName]: csrfToken,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestDto)
-            }).catch(() => null);
-
-            if(response && response.ok) {
-                return await response.json();
-            }
-
-            await throwCorrespondingException(response);
-        },
-
-        updateArticle: async function (requestDto) {
-
-            const response = await fetch(API_BASE_URL + "/article", {
-                credentials: "include",
-                method: "put",
-                headers: {
-                    [csrfHeaderName]: csrfToken,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(requestDto)
-            }).catch(() => null);
-
-            if(response && response.ok) {
-                return await response.json();
-            }
-
-            await throwCorrespondingException(response);
-        },
-
         getArticleById: async function (id, abortSignal) {
 
             const response = await fetch(API_BASE_URL + "/article/" + id, {

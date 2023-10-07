@@ -6,7 +6,7 @@ import ErrorPage from "./ErrorPage";
 import RequestAbortedException from "../exception/RequestAbortedException";
 import ReservesList from "../components/ReservesList";
 import {useSearchParams} from "react-router-dom";
-import reserveApi from "../api/ReserveApi";
+import reserveApi from "../apis/ReserveApi";
 import Pagination from "../components/Pagintation";
 
 function CurrentUserReservesPage() {

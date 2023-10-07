@@ -3,14 +3,16 @@ import {UpdatedUserContext, UserPresenceState} from "../contexts/UserContext";
 import {useContext, useEffect, useState} from "react";
 import $ from "jquery";
 import {AccessLevel, AppContext} from "../contexts/AppContext";
-import Api from "../Api";
+import categoryApi from "../apis/CategoryApi";
 
 $(window).on('resize', function(){
+    let headerMenu = $(".Header .header-menu");
     let win = $(this); //this = window
     if (win.width() < 600) {
-        $(".Header .menu-container").hide();
+        headerMenu.hide();
     } else {
-        $(".Header .menu-container").show();
+        headerMenu.show();
+        // headerMenu.css("display", "flex");
     }
 });
 
@@ -18,9 +20,10 @@ function Header() {
 
     const [mobileMenuOpened, setMobileMenuOpened] = useState(false);
 
-    let toggleMobileMenu = function (e) {
-        e.preventDefault();
-        $(".Header .menu-container").slideToggle(200);
+    let toggleMobileMenu = function () {
+        let headerMenu = $(".Header .header-menu");
+        headerMenu.slideToggle(200);
+        headerMenu.css("display", "flex");
         setMobileMenuOpened(!mobileMenuOpened);
     };
 
@@ -33,78 +36,61 @@ function Header() {
 
         const abortController = new AbortController();
 
-        Api.getAllCategories(abortController.signal)
+        categoryApi.getAll(abortController.signal)
             .then(retrievedCategories => setRootCategories(retrievedCategories));
 
         return () => abortController.abort();
-    }, []);
-
-    const PHONE_NUMBER = "8 (919) 339-50-97";
-    const TITLE = "FELICITA";
+    }, [categoryApi]);
 
     return (
-        <header className={"Header"}>
+        <header className="Header">
 
-            <div className="main-row">
+            <div className="header-upper-part">
+                <div className="header-title">FELICITA</div>
 
-                <p className="phone-number">{PHONE_NUMBER}</p>
-
-                <div className="title">
-                    <a href="/">{TITLE}</a>
-                </div>
-
-                <div className="mobile-reversed-title-number">
-                    <div className="title">
-                        <a href="/">{TITLE}</a>
-                    </div>
-                    <p className="phone-number">{PHONE_NUMBER}</p>
-                </div>
-
-                <div className="menu-opener noselect"
-                     onClick={(e) => toggleMobileMenu(e)}>
+                <div className="menu-toggler noselect"
+                     onClick={() => toggleMobileMenu()}>
                     меню
                 </div>
 
-                <div className="menu-container">
-                    <ul className="menu">
+                <ul className="header-menu">
 
-                        {accessLevel === AccessLevel.ADMIN &&
-                            <li className="menu-item">
-                                <a href="/admin">Админ-панель</a>
-                            </li>
-                        }
-
+                    {accessLevel === AccessLevel.ADMIN &&
                         <li className="menu-item">
-                            <a href="/blog">Блог</a>
+                            <a href="/admin">Админ-панель</a>
                         </li>
+                    }
 
-                        {userPresenceState !== UserPresenceState.PRESENT &&
-                            <li className="menu-item">
-                                <a href="/login">Войти</a>
-                            </li>
-                        }
+                    <li className="menu-item">
+                        <a href="/blog">Блог</a>
+                    </li>
 
-                        {userPresenceState === UserPresenceState.PRESENT &&
-                            <li className="menu-item">
-                                <a href="/profile">Профиль</a>
-                            </li>
-                        }
+                    {userPresenceState !== UserPresenceState.PRESENT &&
+                        <li className="menu-item">
+                            <a href="/login">Войти</a>
+                        </li>
+                    }
 
-                        {userPresenceState === UserPresenceState.PRESENT &&
-                            <li className="menu-item">
-                                <a href="/cart">Корзина</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
+                    {userPresenceState === UserPresenceState.PRESENT &&
+                        <li className="menu-item">
+                            <a href="/profile">Профиль</a>
+                        </li>
+                    }
+
+                    {userPresenceState === UserPresenceState.PRESENT &&
+                        <li className="menu-item">
+                            <a href="/cart">Корзина</a>
+                        </li>
+                    }
+                </ul>
             </div>
 
-            <div className="links-row">
-                <ul className="links-left">
+            <div className="header-lower-part">
+                <ul className="header-lower-part-links">
                     {rootCategories.map(rootCategory => {
                             return (
                                 <li key={"root-category-header-link-container-" + rootCategory["id"]}>
-                                    <a className="header-link"
+                                    <a className="header-lower-part-link"
                                        href={"/catalog?categoriesIds=" + rootCategory["id"]}>
                                         {rootCategory["name"]}
                                     </a>
@@ -113,10 +99,12 @@ function Header() {
                         }
                     )}
                 </ul>
-                <ul className="links-right">
-                    <li><a className={"header-link"} href="/catalog">Каталог</a></li>
-                </ul>
+                <div>
+                    <a className="header-lower-part-primary-link" href="/catalog">Каталог</a>
+                </div>
             </div>
+
+
         </header>
     );
 }
