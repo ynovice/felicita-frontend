@@ -65,7 +65,7 @@ function ArticlePage () {
         return <ErrorPage errorMessage="Произошла какая-то ошибка при попытке открыть статью."/>
     }
 
-    const articlePreviewUrl = imageApi.getImageUrlByImageId(article["id"]);
+    const articlePreviewUrl = imageApi.getImageUrlByImageId(article["preview"]["id"]);
 
     return (
         <div className="ArticlePage">

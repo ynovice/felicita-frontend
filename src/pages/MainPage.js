@@ -14,13 +14,13 @@ function MainPage() {
         {
             name: "Популярное",
             searchParams: {
-                categoriesIds: 21
+                categoriesIds: 14
             }
         },
         {
             name: "Осень",
             searchParams: {
-                categoriesIds: 22
+                categoriesIds: 15
             }
         }
     ], []);
@@ -81,7 +81,7 @@ function MainPage() {
                 articles.length > 0 &&
                 <div className="section larger-gap">
                     <div className="section-name">Блог</div>
-                    <ArticlesContainer articles={articles}/>
+                    <ArticlesContainer articles={articles} oneRowMode={true}/>
                     <a href="/blog" className="link section-link">Больше →</a>
                 </div>
             }
